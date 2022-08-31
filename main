@@ -1,0 +1,126 @@
+#include <iostream>
+#include <set>
+#include <fstream>
+#include <string>
+using namespace std;
+
+void printP();
+void insertP(set<string> &, ifstream &);
+void checkp1(set<string> &);
+void checkp2(set<string> &);
+void checkp3(set<string> &);
+
+int main() {
+  set<string> s1,s2,s3;
+  ifstream f1,f2,f3;
+  int input;
+  f1.open("p1.txt");
+  f2.open("p2.txt");
+  f3.open("p3.txt");
+ 
+  insertP(s1,f1);
+  insertP(s2,f2);
+  insertP(s3,f3);
+ 
+  do{
+     cout <<"Enter the product you are trying to obtain. Press 0 to quit."<<endl;
+     printP();
+    cin >> input;
+    switch(input)
+     {
+      case 1: 
+        checkp1(s1);
+        break;
+      case 2:
+        checkp2(s2);
+        break;
+      case 3:
+        checkp3(s3);
+        break;
+      default:
+        break;
+      }
+  }while(input !=0);
+ 
+  f1.close();
+  f2.close();
+  f3.close();
+  return 0;
+}
+
+void printP(){
+  cout << "1. iPad."<<endl;
+  cout << "2. TextBook." << endl;
+  cout << "3. Sneakers." <<endl;
+}
+void insertP(set<string> &s, ifstream &inf){
+  string sr;
+  while(!inf.eof())
+  {
+    getline(inf, sr);
+    s.insert(sr);
+  }
+}
+
+void checkp1(set<string> &s){
+  string id;
+  cout << "Enter the id of the iPad you're looking for: ";
+  cin >> id;
+
+  if(s.find(id)!=s.end())
+    cout <<"Item Found!"<<endl;
+  else
+  {
+    cout <<"Id not found. Re-enter the id: ";
+    cin >> id;
+    while(s.find(id)==s.end())
+      {
+        if(s.find(id)!=s.end())
+          cout <<"Item Found!\n\n";
+        else
+          cout << "YOU FOOL!"<< endl;
+      }
+  }
+}
+
+void checkp2(set<string> &s){
+  string id;
+  cout << "Enter the id of the Textbook you're looking for: ";
+  cin >> id;
+
+  if(s.find(id)!=s.end())
+    cout <<"Item Found!"<<endl;
+  else
+  {
+    cout <<"Id not found. Re-enter the id: ";
+    cin >> id;
+    while(s.find(id)==s.end())
+      {
+        if(s.find(id)!=s.end())
+          cout <<"Item Found!\n\n";
+        else
+          cout << "YOU FOOL!"<< endl;
+      }
+  }
+}
+
+void checkp3(set<string> &s){
+  string id;
+  cout << "Enter the id of the Sneakers you're looking for: ";
+  cin >> id;
+
+  if(s.find(id)!=s.end())
+    cout <<"Item Found!"<<endl;
+  else
+  {
+    cout <<"Id not found. Re-enter the id: ";
+    cin >> id;
+    while(s.find(id)==s.end())
+      {
+        if(s.find(id)!=s.end())
+          cout <<"Item Found!\n\n";
+        else
+          cout << "YOU FOOL!"<< endl;
+      }
+  }
+}
